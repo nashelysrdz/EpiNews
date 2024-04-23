@@ -1,0 +1,128 @@
+<%- include layouts/header.ejs %>
+
+    <div class="container px-4">
+        <div class="row gx-5">
+            <div class="col">
+                <a href="/" class="btn btn-success" style="color: white;">
+                    <i class="bi bi-arrow-left"></i> Regresar
+                </a>
+                &nbsp;&nbsp;&nbsp;
+                <br><br><br>
+                <div class="p-3 border bg-light">
+                    <!-- <div id="divLoader"><br><br><br>
+                        <div class="animation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <br><br><br><br><br><br>
+                    </div>-->
+                    <div class="container" id="divContenido">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <div class="mb-3 text-center">
+                                    <h6>Búsqueda seleccionada:</h6>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formControlIdioma" class="form-label">Idioma</label>
+                                    <input type="text" name="opIdiomaEdj" id="opIdiomaEdh" class="form-control"
+                                        value="<%= opIdioma %>" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <%if(opCategoria=="" ){ opCategoria="Todas las categorias" ; }%>
+                                        <label for="formControlCategoria" class="form-label">Categoría</label>
+                                        <input type="text" name="opCategoriaEdh" id="opCategoriaEdh"
+                                            value="<%=opCategoria %>" class="form-control" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formControlPais" class="form-label">Buscar por palabra</label>
+                                    <input type="text" name="txtPalabrah" class="form-control" id="formControlPalabra"
+                                        value="<%=opTexto%>" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-9">
+
+                                <div class="mb-3 text-end" id="divBtnDescargar">
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        onclick="descargarArchivos();">Descargar todas las noticias</button>
+                                </div>
+                                <div class="mb-3 text-end" id="divBtnDescargarHidden" style="display: none;">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;
+                                </div>
+
+                                <!--   <div class="d-md-flex justify-content-center">
+                                <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
+                                    style="max-width: 100%; max-height: 300px;">
+                            -->
+                                <div class="card-group">
+                                    <div class="row">
+                                        <% var direcciones="" , titulos="" ; if(resultados.length==0){%>
+                                            &nbsp;&nbsp;&nbsp;No se encontraron resultados
+                                            <%}else{ for(var i=0; i < resultados.length; i++){
+                                                if(resultados[i].pubDate.includes(fecha)){ 
+                                                    
+                                                    direcciones = direcciones +"_;_"+ resultados[i].link; 
+                                                titulos = titulos+ "_;_" + resultados[i].title; %>
+                                                <div class="card col-md-6 col-lg-4">
+                                                   <img src="" class="card-img-top" height="150px" alt="..."
+                                                        onError="this.onerror=null;this.src='/images/news-gb.png';">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">
+                                                            <b>
+                                                                <%= resultados[i].title %>
+                                                            </b>
+
+                                                        </h6>
+                                                        <input type="hidden" name="hdTitle_<%=i%>" id="hdTitle_<%=i%>"
+                                                            value="<%= resultados[i].title %>">
+                                                        <input type="hidden" name="hdUrl_<%=i%>" id="hdUrl_<%=i%>"
+                                                            value="<%= resultados[i].link %>">
+                                                        <input type="hidden" name="hdPublishedAt_<%=i%>"
+                                                            id="hdPublishedAt_<%=i%>"
+                                                            value="<%= resultados[i].pubDate %>">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div id="divBtnDescarga_<%=i%>">
+                                                            <a class="btn btn-primary btn-sm" target="_blank"
+                                                                href="<%= resultados[i].link %>">Ver noticia</a>
+                                                            &nbsp;&nbsp;
+                                                            <a class="btn btn-warning btn-sm" style="color: white;"
+                                                                id="<%=i%>" onclick="enviarBoton(this)">Descargar</a>
+                                                        </div>
+                                                        <div id="divBtnCarga_<%=i%>" style="display: none;">
+                                                            <a class="btn btn-primary btn-sm" target="_blank"
+                                                                href="<%= resultados[i].link %>">Ver noticia</a>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <div class="spinner-border text-primary" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } } } %>
+                                                    <!--End row-->
+                                                    <input type="hidden" name="txtUrl" id="txtUrl"
+                                                        value="<%=direcciones.trim().slice(3)%>">
+                                                    <input type="hidden" name="txtTitulo" id="txtTitulo"
+                                                        value="<%=titulos.trim().slice(3)%>">
+                                                        
+                                    </div>
+                                </div>
+                                <!--   </div>
+                            </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include layouts/footer.ejs %>

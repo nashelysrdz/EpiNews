@@ -1,0 +1,57 @@
+<%- include layouts/header.ejs %>
+  <div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <div class="p-3 border bg-light">
+          <div class="container">
+            <div class="row" id="contenidoGenerar">
+              <div class="col-sm-12 col-md-12 col-lg-7 ">
+                <div class="text-center">
+                  <img src="/images/new-g6.png" class="rounded" alt="news" width="50%">
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-5">
+                <form method="post" action="/searchNews">
+                  <div class="mb-3">
+                    <label for="formControlIdioma" class="form-label">Idioma</label>
+                    <select class="form-select" name="selectIdioma" id="selectIdioma"
+                      aria-label="Default select example" onchange="cambiarIdioma();">
+                      <option value="gl-MX" selected>Español (México)</option>
+                      <option value="gl-US">Español (Estados Unidos)</option>
+                      <option value="en-GB">Inglés</option>
+                    </select>
+                    <input type="hidden" name="opIdioma" id="opIdioma" value="Español (México)">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formControlCategoria" class="form-label">Categoría</label>
+                    <select class="form-select" name="selectCategoria" id="selectCategoria"
+                      aria-label="Default select example">
+                      <option value="" selected>Todas las categorias</option>
+                      <option value="Ciencia">Ciencia</option>
+                      <option value="Deportes">Deportes</option>
+                      <option value="Entretenimiento">Entretenimiento</option>
+                      <option value="General">General</option>
+                      <option value="Negocios">Negocios</option>
+                      <option value="Salud">Salud</option>
+                      <option value="Tecnología">Tecnología</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="formControlPais" class="form-label">Buscar por palabra</label>
+                    <input type="text" name="txtPalabra" class="form-control" id="formControlPalabra">
+                  </div>
+                  <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary" id="btnEnviar"
+                      onclick="this.form.submit(); this.disabled = true; ">
+                      Buscar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include layouts/footer.ejs %>
